@@ -427,7 +427,7 @@ footer{background:var(--navy-2); color:rgba(255,255,255,0.6); padding:80px 0 30p
 
     <div class="hero-visual">
       <div class="hero-art-card card-main">
-        <img src="images\Tmberk.jpeg" />
+        <img src="Tmberk.jpeg" />
       </div>
       <div class="hero-art-card card-float">
         <div class="card-icon">
@@ -452,7 +452,7 @@ footer{background:var(--navy-2); color:rgba(255,255,255,0.6); padding:80px 0 30p
   <div class="container about-grid">
     <div class="about-collage reveal">
       <div class="collage-card collage-1">
-        <img src="images\Welcome.jpeg" style="display:block;max-width:100%;" />
+        <img src="Welcome.jpeg" style="display:block;max-width:100%;" />
       </div>
       <div class="collage-card collage-2">
         <svg viewBox="0 0 200 200" width="100%" height="100%" style="background:#F8F9FA">
@@ -504,7 +504,7 @@ footer{background:var(--navy-2); color:rgba(255,255,255,0.6); padding:80px 0 30p
       <article class="team-card" style="--i:0">
         <div class="team-image-wrap">
           <!-- https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80 -->
-          <img src="images\founder.png" alt="Founder portrait">
+          <img src="founder.png" alt="Founder portrait">
         </div>
         <div class="team-content">
           <span class="team-badge">Founder</span>
@@ -521,7 +521,7 @@ footer{background:var(--navy-2); color:rgba(255,255,255,0.6); padding:80px 0 30p
       <article class="team-card" style="--i:1">
         <div class="team-image-wrap">
           <!-- https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80 -->
-          <img src="images\Co-founder.png" alt="Co-founder portrait">
+          <img src="Co-founder.png" alt="Co-founder portrait">
         </div>
         <div class="team-content">
           <span class="team-badge">Co-Founder</span>
@@ -551,7 +551,7 @@ footer{background:var(--navy-2); color:rgba(255,255,255,0.6); padding:80px 0 30p
     <div class="brand-showcase">
       <div class="bottle-stage reveal">
         <div class="bottle-glow"></div>
-        <img src="images\Scentivara.png" style="display:block;max-width:100%;" />
+        <img src="Scentivara.png" style="display:block;max-width:100%;" />
       </div>
 
       <div class="brand-cards reveal-stagger">
@@ -748,30 +748,6 @@ function closeMenu(){ mobileMenu.classList.remove('open'); scrim.classList.remov
 burger.addEventListener('click', () => { mobileMenu.classList.add('open'); scrim.classList.add('show'); });
 scrim.addEventListener('click', closeMenu);
 mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
-
-// Convert all local image-folder assets to Base64 data URIs after loading.
-function inlineLocalImages(){
-  document.querySelectorAll('img[src]').forEach(image => {
-    if(image.src.startsWith('data:') || !image.src.includes('/images/')) return;
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    const inline = () => {
-      if(!image.naturalWidth || !image.naturalHeight || !context) return;
-      canvas.width = image.naturalWidth;
-      canvas.height = image.naturalHeight;
-      context.drawImage(image, 0, 0);
-      try{
-        const type = /\.png(?:$|[?#])/i.test(image.src) ? 'image/png' : 'image/jpeg';
-        image.src = canvas.toDataURL(type, .92);
-      }catch(error){
-        console.warn('Unable to inline image as Base64:', image.src, error);
-      }
-    };
-    if(image.complete) inline();
-    else image.addEventListener('load', inline, {once:true});
-  });
-}
-inlineLocalImages();
 
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
